@@ -20,5 +20,4 @@ def count_lucky_numbers(from_number: int, to_number: int, lucky_char: str):
 
 count_lucky_numbers(1, 300, '3')
 count_lucky_numbers(300, 1247, '7')
-count_lucky_numbers(1, 10**8, '7')
-
+# count_lucky_numbers(1, 10 ** 8, '7')

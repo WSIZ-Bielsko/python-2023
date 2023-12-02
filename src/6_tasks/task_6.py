@@ -9,9 +9,28 @@ Napisać funkcję która sprawdzi, czy podana liczba `number` jest parzyście pi
 """
 
 
+def count_chars_in_string(s: str, char: str):
+    """
+    Counts the number of occurrances of `char` in `s`.
+    :param s:
+    :param char:
+    :return:
+    """
+    i = 0
+    for c in s:
+        if c == char:
+            i += 1
+    return i
+
+
 def is_even_beautiful(number: int) -> bool:
-    # your code here
-    pass
+    snumber = str(number)
+    for digit in '0123456789':
+        # c = snumber.count(digit)  # ile razy znak `digit` wystepuje w napisie `snumber`
+        c = count_chars_in_string(snumber, digit)
+        if c != 0 and c != 2:
+            return False
+    return True
 
 
 class TestEngine6(unittest.TestCase):

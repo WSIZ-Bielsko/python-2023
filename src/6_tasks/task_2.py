@@ -23,7 +23,13 @@ kombinacje:
 
 def find_best_combination(data: list[int]) -> int:
     # your code here
-    pass
+    # de facto: zsumować wartości bezwzględne elementów tablicy
+    # sum_ = 0
+    # for x in data:
+    #     sum_ += abs(x)
+    #
+    # return sum_
+    return sum([abs(f) for f in data])
 
 
 class TestEngine2(unittest.TestCase):

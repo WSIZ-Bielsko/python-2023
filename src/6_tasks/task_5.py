@@ -12,8 +12,11 @@ rozpłaszczyć (zachowując powierzchnię). Proszę sprawdzić czy wystarczy nam
 
 
 def cut_cakes(area: float, small_cakes: list[float]) -> bool:
-    # your code here
-    pass
+    suma_ = 0
+    for cake_radius in small_cakes:
+        suma_ += cake_radius ** 2
+    suma_ *= math.pi
+    return area >= suma_
 
 
 class TestEngine5(unittest.TestCase):
@@ -35,6 +38,10 @@ class TestEngine5(unittest.TestCase):
     def test_5(self):
         # duuże ciasta
         self.assertEqual(cut_cakes(10 ** 6, [10 ** 1, 10 ** 2, 10 ** 3]), False)
+
+    def test_6(self):
+        # duuże ciasta
+        self.assertEqual(cut_cakes(math.pi, [1]), True)
 
 
 if __name__ == '__main__':

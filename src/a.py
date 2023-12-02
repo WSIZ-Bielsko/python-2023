@@ -1,7 +1,9 @@
-def is_square(a: int) -> bool:
-    x = int(a ** 0.5)
-    if x * x == a:
-        return True
-    return False
+w = [1, 2, 3, 4]
+# jak zsumowac kwadraty elementow listy w ???
+
+
+suma_ = 0
+for x in w:
+    suma_ += x ** 2
 
 

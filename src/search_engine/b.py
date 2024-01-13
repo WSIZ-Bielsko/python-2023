@@ -3,8 +3,6 @@ import datetime
 from search import File
 
 
-
-
 # def get_size_verbose(size: int) -> str:
 #     # zamienić size (w B) na coś w GB, MB, KB ... z 1 miejscem po przecinku
 #     # 1234 ---> 1.2 KB
@@ -21,16 +19,27 @@ def get_age_in_days(date: datetime) -> int:
     return (datetime.datetime.now() - date).days
 
 
+# def get_size_verbose(size: int) -> str:
+#     if len(str(size)) >= 13:
+#         return str(round(size / 10 ** 12, 2)) + " TB"
+#     if len(str(size)) >= 10:
+#         return str(round(size / 10 ** 9, 2)) + " GB"
+#     if len(str(size)) >= 7:
+#         return str(round(size / 10 ** 6, 2)) + " MB"
+#     if len(str(size)) >= 4:
+#         return str(round(size / 10 ** 3, 2)) + " KB"
+#     return str(size) + "B"
+
+
 def get_size_verbose(size: int) -> str:
-    if len(str(size)) >= 13:
-        return str(round(size / 10 ** 12, 2)) + " TB"
-    if len(str(size)) >= 10:
-        return str(round(size / 10 ** 9, 2)) + " GB"
-    if len(str(size)) >= 7:
-        return str(round(size / 10 ** 6, 2)) + " MB"
-    if len(str(size)) >= 4:
-        return str(round(size / 10 ** 3, 2)) + " KB"
-    return str(size) + "B"
+    n_digits = len(str(size))
+    units = ['B', 'KB', 'MB', 'GB', 'TB']
+    group = min(n_digits // 3, 4)
+
+    unit = units[group]
+    unit_size = (10 ** 3) ** group
+
+    return str(round(size / unit_size, 1)) + ' ' + unit
 
 
 def file_verbose(f: File) -> str:
@@ -38,9 +47,9 @@ def file_verbose(f: File) -> str:
 
 
 if __name__ == '__main__':
-    f = File(path='/home/wrong/vmware/gns3_vmware.zip', size=4733877482,
+    f = File(path='/home/wrong/vmware/gns3_vmware.zip', size=4733111000,
              last_modify_time=datetime.datetime(2021, 4, 10, 0, 21, 34, 746313))
-    f2 = File(path='/home/wrong/Downloads/vIOS-L2.zip', size=36275271,
+    f2 = File(path='/home/wrong/Downloads/vIOS-L2.zip', size=36111000,
               last_modify_time=datetime.datetime(2021, 2, 1, 19, 49, 51, 930827))
 
     print(file_verbose(f))

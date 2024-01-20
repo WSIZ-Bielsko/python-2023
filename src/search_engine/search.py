@@ -1,27 +1,5 @@
-import os
-from dataclasses import dataclass, field
-from datetime import datetime, timedelta
-
-
-@dataclass
-class Selector:
-    min_size: int = -1
-    older_than_days: int = -1
-    extensions: list[str] = field(default_factory=[])
-
-
-@dataclass
-class File:
-    path: str
-    size: int
-    last_modify_time: datetime
-
-    def is_older_than(self, days: int) -> bool:
-        return datetime.now() - self.last_modify_time > timedelta(days=days)
-
-    @staticmethod
-    def get_file(path: str) -> 'File':
-        return File(path, os.path.getsize(path), datetime.fromtimestamp(os.path.getmtime(path)))
+from model import *
+from gg.easy import play
 
 
 def get_size_verbose(size: int) -> str:
@@ -83,9 +61,12 @@ if __name__ == '__main__':
     # print(File.get_file('aparser.py'))
     selector = Selector(extensions=[])
     engine = SearchEngine()
-    files = engine.traverse_path('/home/user', depth=5, selector=selector)
+    files = engine.traverse_path('/home/wrong', depth=3, selector=selector)
     files = sorted(files, key=lambda f: -f.size)
     files = [f for f in files if '.wine' not in f.path]
     files = files[:20]
     for f in files:
         print(file_verbose(f))
+
+    print('-----')
+    play()

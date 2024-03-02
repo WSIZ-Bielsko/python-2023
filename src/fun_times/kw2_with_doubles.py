@@ -20,3 +20,4 @@ def get_average_d6_2x_throws(throws: int) -> float:
 
 if __name__ == '__main__':
     print(get_average_d6_2x_throws(1000000))
+    print(round(-1.7))

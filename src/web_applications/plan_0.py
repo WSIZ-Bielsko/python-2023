@@ -8,7 +8,7 @@ import requests
 class Lecture:
     przedmiotid: int
     nazwa: str
-    active: bool
+    active: bool = True
 
 
 @dataclass
@@ -85,6 +85,8 @@ def get_plan() -> list[PlanItem]:
 #     # todo: use dict's to get nice verbose plan
 #     for p in plan:
 #         print(p)
+
+
 
 
 if __name__ == '__main__':

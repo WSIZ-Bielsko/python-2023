@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from datetime import time
+from datetime import time, date
 
 import requests
 
@@ -22,16 +22,14 @@ class Teacher:
     active: bool
 
 
-"""
-create table plan(
-    group_id int,
-    lecture_id int,
-    room text,
-    hour time,
-    day_of_week text
-);
-
-"""
+@dataclass
+class Group:
+    grupaid: int
+    nazwa: str
+    opis: str
+    active: bool
+    oldgrupaid: int
+    studiastop: date
 
 
 @dataclass
@@ -62,8 +60,13 @@ def get_teachers(token: str) -> list[Teacher]:
     return teachers
 
 
-def login(album: str, password: str) -> str:
-    pass
+def get_groups(token: str) -> list[Group]:
+    url = f'{WD_URL}/groups?active=True&wdauth={token}'
+    res = requests.get(url)
+    groups = res.json()
+    groups = [Group(**l) for l in groups]
+    return groups
+
 
 
 def get_plan() -> list[PlanItem]:
@@ -74,18 +77,18 @@ def get_plan() -> list[PlanItem]:
     return plan
 
 
-def display_plan_for_group(group_id: int):
-    TOKEN = '0bfcf58b-6e48-494a-9821-06930ce213da'
-    plan = get_plan()
-    teachers = get_teachers(TOKEN)
-    lectures = get_lectures(TOKEN)
-    # todo: use dict's to get nice verbose plan
-    for p in plan:
-        print(p)
+# def display_plan_for_group(group_id: int):
+#     TOKEN = '0bfcf58b-6e48-494a-9821-06930ce213da'
+#     plan = get_plan()
+#     teachers = get_teachers(TOKEN)
+#     lectures = get_lectures(TOKEN)
+#     # todo: use dict's to get nice verbose plan
+#     for p in plan:
+#         print(p)
 
 
 if __name__ == '__main__':
-    TOKEN = '0bfcf58b-6e48-494a-9821-06930ce213da'
+    TOKEN = "864b0e72-0a93-4b74-a469-984225627217"
 
     # todo: sort by name
     for nl in get_lectures(TOKEN):
@@ -94,10 +97,8 @@ if __name__ == '__main__':
     for te in get_teachers(TOKEN):
         print(te)
 
-    url = f'{WD_URL}/groups?active=true&wdauth={TOKEN}'
-    res = requests.get(url)
-    for g in res.json():
-        print(g)
-    # print(url)
+    for gr in get_groups(TOKEN):
+        print(gr)
+
     print('---------')
-    display_plan_for_group(group_id=159)
+    # display_plan_for_group(group_id=159)

@@ -14,12 +14,12 @@ class Lecture:
 @dataclass
 class Teacher:
     wykladowcaid: int
-    sid: int
     imie: str
     nazwisko: str
-    prefix: str
-    suffix: str
-    active: bool
+    sid: int = -1
+    prefix: str = ''
+    suffix: str = ''
+    active: bool = True
 
 
 @dataclass

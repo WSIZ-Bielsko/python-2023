@@ -31,6 +31,24 @@ class Group:
 
 
 @dataclass
+class Student:
+    studentid: int
+    album: str
+    imie: str
+    nazwisko: str
+
+    datarejestracji: date
+    active: bool | None
+    comment: str | None
+
+    # ignore the fields below
+    star: bool
+    finid: int
+    email: str
+    phone: str
+
+
+@dataclass
 class PlanItem:
     group_id: int
     lecture_id: int

@@ -30,12 +30,25 @@ def get_groups(token: str) -> list[Group]:
     return groups
 
 
+def get_students(token: str) -> list[Student]:
+    url = f'{WD_URL}/students?onlyactive=True&wdauth={token}'
+    res = requests.get(url)
+    if res.status_code != 200:
+        print('błąd pobierania listy studentów')
+        return []
+    students = res.json()
+    students = [Student(**item) for item in students]
+    # sort by ??
+    return students
+
+
 def get_plan() -> list[PlanItem]:
     plan = []
     plan.append(PlanItem(group_id=159, lecture_id=897, room="S23", hour=time(hour=13, minute=45), day_of_week='Sat'))
     plan.append(PlanItem(group_id=159, lecture_id=922, room="S12", hour=time(hour=12, minute=00), day_of_week='Sat'))
     plan.append(PlanItem(group_id=159, lecture_id=901, room="S12", hour=time(hour=12, minute=00), day_of_week='Sat'))
     return plan
+
 
 # todo: to be completed after some plans are generated
 #
@@ -61,6 +74,9 @@ if __name__ == '__main__':
 
     for gr in get_groups(TOKEN):
         print(gr)
+    #
+    # for st in get_students(TOKEN):
+    #     print(st)
 
     print('---------')
     # display_plan_for_group(group_id=159)

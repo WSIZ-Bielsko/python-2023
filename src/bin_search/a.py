@@ -1,5 +1,11 @@
-if __name__ == '__main__':
-    d = 4
-    a = 4 ** 0.5
-    print(a)
-    print(a==2)
+
+
+w = [4,3,9,1]
+
+
+z = sorted(w)
+w.sort()
+
+
+print(z)
+print(w)

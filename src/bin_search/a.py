@@ -1,11 +1,2 @@
-
-
-w = [4,3,9,1]
-
-
-z = sorted(w)
-w.sort()
-
-
-print(z)
-print(w)
+w = 1
+x = [(w, i) for i in range(10)]

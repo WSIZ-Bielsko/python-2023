@@ -17,3 +17,6 @@ def test_bulk():
     assert find_missing_and_surplus_parts('ab', 'abc') == ('', 'c')
     assert find_missing_and_surplus_parts('aaaabbbb', 'aaaabbbc') == ('b', 'c')
     assert find_missing_and_surplus_parts('abbc', 'abc') == ('b', '')
+
+def test_extra():
+    assert find_missing_and_surplus_parts('aaaaa', 'aa') == ('aa', '')

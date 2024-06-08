@@ -8,8 +8,9 @@ def load_board(file_name: str):
 
 
 def show_board(board: list[list[int]]):
-    for row in board:
-        print(' '.join([str(i) for i in row]))
+    print()
+    for i, row in enumerate(board):
+        print(f'row{i}', ' '.join([str(i) for i in row]))
 
 
 def find_cheapest_left_to_right(board: list[list[int]]) -> tuple[int, int]:
@@ -19,12 +20,26 @@ def find_cheapest_left_to_right(board: list[list[int]]) -> tuple[int, int]:
     :param board:
     :return: tuple: (minimal_cost, row_number)
     """
-    return (0,0)
+    return (0, 0)
+
+
+def find_cost_of_path(board: list[list[int]], path: list[tuple[int, int]]) -> int:
+    """
+    Finds the cost of the `path` on the `board` provided
+    :param board:
+    :param path:
+    :return: cost of moving along the path
+    """
+    return 0
 
 
 if __name__ == '__main__':
+    import os
+
+    print(f'starting in {os.getcwd()}')
     a: list[list[int]] = [[]]
 
     board1 = load_board('landscape_1.txt')
     # print(board1)
     show_board(board1)
+    find_cost_of_path(board1, [(0, 0), (0, 1), (0, 2), (1, 2)])  # 12

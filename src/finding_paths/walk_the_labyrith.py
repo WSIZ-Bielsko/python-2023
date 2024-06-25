@@ -111,13 +111,13 @@ if __name__ == '__main__':
     # print(board1)
     # show_board(board1)
 
-    # walk_the_landscape(board1, 700, acceptable_terrain_cost=7)
+    walk_the_landscape(board1, 700, acceptable_terrain_cost=7)
 
-    visited: set[tuple[int, int]] = set()
-    walk_the_mylna_cave(board1, max_depth=250, acceptable_terrain_cost=7, visited=visited,
-                        at=(0, 0))
-    for at in visited:
-        board1[at[0]][at[1]] = '.'
+    # visited: set[tuple[int, int]] = set()
+    # walk_the_mylna_cave(board1, max_depth=70, acceptable_terrain_cost=7, visited=visited,
+    #                     at=(0, 0))
+    # for at in visited:
+    #     board1[at[0]][at[1]] = '.'
 
     show_board(board1)
     # find_cost_of_path(board1, [(0, 0), (0, 1), (0, 2), (1, 2)])  # 12
